@@ -1,0 +1,68 @@
+﻿@using Note.Model
+@model ValueTuple<List<Notice>, List<Board>>
+
+<form class="form-horizontal" method="post" asp-controller="Account" asp-action="Login">
+    <div class="container ">
+        <div class="row">
+            @if (User.Identity.IsAuthenticated)
+            {
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <h3 class="text-primary"> @User.Identity.Name 님 환영합니다.</h3>
+                        <button class="form-control btn-danger" asp-controller="Account" asp-action="Logout">로그아웃</button>
+                    </div>
+                </div>
+            }
+            <div class="col-md-9">
+                <div class="panel panel-warning">
+                    <div class="panel panel-heading">
+                        <a class="text-center" asp-controller="Notice" asp-action="Index"><h2> 공지사항 </h2></a>
+                    </div>
+                    <div class="panel panel-body">
+                        <div class="list-group">
+                            @foreach (var notice in Model.Item1.Take(5))
+                            {
+                                <a class="list-group-item" asp-controller="Notice" asp-route-noticeNo="@notice.No" asp-action="Detail"><h4>★ @notice.Title </h4> </a>
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-success">
+                    <div class="panel panel-heading">
+                        <a class="text-center" asp-controller="Board" asp-action="Index"> <h2>이미지 게시판</h2> </a>
+                    </div>
+                    <div class="panel panel-body">
+
+                        <div class="row">
+                            @foreach (var board in Model.Item2.Take(3))
+                            {
+                                
+                                <div class="col-sm-6 col-md-4 form-inline">
+                                    <div class="thumbnail">
+                                        <a asp-controller="Board" asp-route-boardNo="@board.No" asp-action="Detail">
+                                            <img  class="img-thumbnail" src="~/images/boardImage/@board.ImageName"  />
+                                        </a>
+                                        <div class="caption text-center">
+                                            <label class="text-center">@board.Title</label>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+
+                <!--
+                <div class="jumbotron">
+                    <h2 class="text-center"> 이미지게시판 </h2>
+                    <ul>
+                        <li>1</li>
+                        <li>2</li>
+                    </ul>
+                </div>
+                -->
+            </div>
+        </div>
+    </div>
+</form>
