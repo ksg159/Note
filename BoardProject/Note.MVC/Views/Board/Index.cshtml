@@ -6,6 +6,11 @@
     <nav>
         @await this.Component.InvokeAsync("Pager", new { pagingList = this.Model })
     </nav>
+
+    <form asp-action="Index" class="form-inline top-right">
+        <input class="form-control" name="SearchName" value="@ViewData["Search"]" type="text" />
+        <button type="submit" value="Search" class="btn btn-primary">검색</button>
+    </form>
     <table class="table table-striped">
         <thead>
             <tr>
@@ -41,6 +46,7 @@
     <nav>
         <vc:pager paging-list="@Model" />
     </nav>
+
 
     @if (User.Identity.IsAuthenticated)
     {

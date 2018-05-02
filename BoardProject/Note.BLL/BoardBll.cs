@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Note.BLL
 {
-    public class BoardBll 
+    public class BoardBll
     {
         private readonly IBoardDal _boardDal;
 
@@ -47,5 +47,9 @@ namespace Note.BLL
             return _boardDal.GetBoardTracking();
         }
 
+        public IOrderedQueryable<Board> GetBoardTracking(string searchName)
+        {
+            return _boardDal.GetBoardTracking(searchName);
+        }
     }
 }

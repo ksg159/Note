@@ -22,12 +22,22 @@ namespace Note.MVC.Controllers
           
         }
 
-        public async Task<IActionResult> Index(int page = 1)
+        public async Task<IActionResult> Index(int page = 1, string searchName = "")
         {
-            var item = _noticeBll.GetNoticeTracking();
-            var model = await PagingList<Notice>.CreateAsync(item, 5, page);
+            
+            if (string.IsNullOrEmpty(searchName))
+            {
+                var item = _noticeBll.GetNoticeTracking();
+                var model = await PagingList<Notice>.CreateAsync(item, 5, page);
 
-            return View(model);
+                return View(model);
+            } else
+            {
+                var item = _noticeBll.GetNoticeTracking(searchName);
+                var model = await PagingList<Notice>.CreateAsync(item, 5, page);
+
+                return View(model);
+            }
         }
 
         public IActionResult Add()
@@ -82,11 +92,10 @@ namespace Note.MVC.Controllers
             return View();
         }
 
-        [HttpPost]
         public IActionResult Delete(int noticeNo)
         {
             _noticeBll.DeleteNotice(noticeNo);
-            return Redirect("Index");
+            return Redirect("Index");   
         }
     }
 }

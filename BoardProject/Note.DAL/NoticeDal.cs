@@ -102,8 +102,13 @@ namespace Note.DAL
         {
             var db = new NoteDbContext(_configuration);
             var _notice = db.Notices.AsNoTracking().OrderByDescending(n => n.No);
-            return _notice;
-            
+            return _notice; 
+        }
+
+        public IOrderedQueryable<Notice> GetNoticeTracking(string searchName)
+        {
+            var db = new NoteDbContext(_configuration);
+            return db.Notices.AsNoTracking().Where(n => n.Title.Contains(searchName) || n.Content.Contains(searchName)).OrderByDescending(n => n.No);
         }
     }
 }

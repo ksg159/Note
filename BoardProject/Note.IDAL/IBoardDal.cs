@@ -13,7 +13,6 @@ namespace Note.IDAL
         /// </summary>
         /// <returns></returns>
         List<Board> GetList();
-
         /// <summary>
         /// 글 상세보기
         /// </summary>
@@ -36,5 +35,6 @@ namespace Note.IDAL
 
         IOrderedQueryable<Board> GetBoardTracking();
 
+        IOrderedQueryable<Board> GetBoardTracking(string searchName);
     }
 }

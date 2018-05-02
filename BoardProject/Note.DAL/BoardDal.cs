@@ -49,6 +49,12 @@ namespace Note.DAL
             return _board;
         }
 
+        public IOrderedQueryable<Board> GetBoardTracking(string searchName)
+        {
+            var db = new NoteDbContext(_configuration);
+            return db.Boards.AsNoTracking().Where(b => b.Title.Contains(searchName) || b.Content.Contains(searchName)).OrderByDescending(b => b.No);
+        }
+
         public List<Board> GetList()
         {
             using (var db = new NoteDbContext(_configuration))
