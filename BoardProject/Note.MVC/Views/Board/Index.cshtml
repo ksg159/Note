@@ -1,0 +1,51 @@
+﻿@model ReflectionIT.Mvc.Paging.PagingList<Note.Model.Board>
+@using ReflectionIT.Mvc.Paging
+@addTagHelper *,ReflectionIT.Mvc.Paging
+
+<div class="container">
+    <nav>
+        @await this.Component.InvokeAsync("Pager", new { pagingList = this.Model })
+    </nav>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>번호</th>
+                <th>썸네일</th>
+                <th>제목</th>
+                <th>작성자</th>
+                <th>작성날짜</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var board in Model)
+            {
+                <tr>
+                    <td>@board.No</td>
+                    <td><img class="img-rounded" src="~/images/boardImage/@board.ImageName" width="100" height="100" /></td>
+                    <td><a asp-controller="Board" asp-route-boardNo="@board.No" asp-action="Detail">@board.Title</a> </td>
+                    <td>@board.UserId</td>
+                    <td>@board.WriteDate</td>
+                    <td>
+                        @if (User.Identity.Name == board.UserId)
+                        {
+
+                            <a asp-controller="Board" asp-route-boardNo="@board.No" asp-action="Edit">Edit</a>
+                            <label>|</label>
+                            <a asp-controller="Board" asp-route-boardNo="@board.No" asp-action="Delete">Delete</a>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <nav>
+        <vc:pager paging-list="@Model" />
+    </nav>
+
+    @if (User.Identity.IsAuthenticated)
+    {
+        <div class="pull-right">
+            <a class="btn btn-primary" asp-controller="Board" asp-action="Add">글쓰기</a>
+        </div>
+    }
+</div>
