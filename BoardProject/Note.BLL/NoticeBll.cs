@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Note.BLL
 {
-    public class NoticeBll : INoticeDal
+    public class NoticeBll
     {
         private readonly INoticeDal _noticeDal;
 
@@ -73,6 +73,11 @@ namespace Note.BLL
         public IOrderedQueryable<Notice> GetNoticeTracking()
         {
             return _noticeDal.GetNoticeTracking(); 
+        }
+
+        public IOrderedQueryable<Notice> GetNoticeTracking(string searchName)
+        {
+            return _noticeDal.GetNoticeTracking(searchName);
         }
     }
 }

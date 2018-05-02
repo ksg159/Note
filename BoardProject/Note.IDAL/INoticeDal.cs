@@ -14,6 +14,7 @@ namespace Note.IDAL
         /// </summary>
         /// <returns></returns>
         List<Notice> GetList();
+
         /// <summary>
         /// 공지사항 상세 출력
         /// </summary>
@@ -31,6 +32,13 @@ namespace Note.IDAL
         /// </summary>
         bool DeleteNotice(int noticeNo);
 
+        /// <summary>
+        /// 페이징 리스트
+        /// </summary>
+        /// <returns></returns>
         IOrderedQueryable<Notice> GetNoticeTracking();
+
+        IOrderedQueryable<Notice> GetNoticeTracking(string searchName);
+
     }
 }

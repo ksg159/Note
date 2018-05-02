@@ -25,11 +25,20 @@ namespace Note.MVC.Controllers
             _environment = environment;
         }
 
-        public async Task<IActionResult> Index(int page = 1)
+        public async Task<IActionResult> Index(int page = 1, string searchName = "")
         {
-            var item = _boardBll.GetBoardTracking();
-            var model = await PagingList<Board>.CreateAsync(item, 5, page);
-            return View(model);
+            if (string.IsNullOrEmpty(searchName))
+            {
+                var item = _boardBll.GetBoardTracking();
+                var model = await PagingList<Board>.CreateAsync(item, 5, page);
+                return View(model);
+            } else
+            {
+                var item = _boardBll.GetBoardTracking(searchName);
+                var model = await PagingList<Board>.CreateAsync(item, 5, page);
+                return View(model);
+            }
+
         }
 
         public IActionResult Add()

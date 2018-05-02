@@ -9,6 +9,7 @@
                 <div class="col-md-3">
                     <div class="form-group">
                         <h3 class="text-primary"> @User.Identity.Name 님 환영합니다.</h3>
+                        <button class="form-control btn btn-warning" asp-controller="Account" asp-action="Edit">내 정보</button>
                         <button class="form-control btn-danger" asp-controller="Account" asp-action="Logout">로그아웃</button>
                     </div>
                 </div>
