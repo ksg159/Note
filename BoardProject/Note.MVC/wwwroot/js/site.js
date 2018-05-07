@@ -8,7 +8,7 @@
     },
     btns: [
         ['viewHTML'],
-        ['undo', 'redo'], // Only supported in Blink browsers
+        ['undo', 'redo'], 
         ['formatting'],
         ['strong', 'em', 'del'],
         ['superscript', 'subscript'],
@@ -38,16 +38,4 @@ $(".delete").click(function myfunction() {
     }
    return document.forms.appendChild(confirm_value);
 })
-
-
-function deleteAlert() {
-    var btn = document.getElementById("delete");
-    btn.addEventListener('click', function () {
-        if (confirm("정말 삭제하시겠습니까?")) {
-            $("#delete").val()
-        } else {
-            alert("취소 되었습니다.");
-        }
-    })
-}
 

@@ -36,7 +36,7 @@
 
                             <a asp-controller="Board" asp-route-boardNo="@board.No" asp-action="Edit">Edit</a>
                             <label>|</label>
-                            <a asp-controller="Board" asp-route-boardNo="@board.No" asp-action="Delete">Delete</a>
+                            <a class="delete" asp-controller="Board" asp-route-boardNo="@board.No" asp-action="Delete">Delete</a> //delete JQuery 추가
                         }
                     </td>
                 </tr>

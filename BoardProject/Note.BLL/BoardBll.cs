@@ -19,11 +19,19 @@ namespace Note.BLL
 
         public bool DeleteBoard(int boardNo)
         {
+            if(boardNo <= 0)
+            {
+                throw new ArgumentNullException();
+            }
             return _boardDal.DeleteBoard(boardNo);
         }
 
         public Board GetBoard(int boardNo)
         {
+            if (boardNo <= 0)
+            {
+                throw new ArgumentNullException();
+            }
             return _boardDal.GetBoard(boardNo);
         }
 
@@ -34,11 +42,19 @@ namespace Note.BLL
 
         public bool SaveBoard(Board model)
         {
+            if(model == null)
+            {
+                throw new ArgumentNullException();
+            }
             return _boardDal.SaveBoard(model);
         }
 
         public bool UpdateBoard(Board model)
         {
+            if (model == null)
+            {
+                throw new ArgumentNullException();
+            }
             return _boardDal.UpdateBoard(model);
         }
 
