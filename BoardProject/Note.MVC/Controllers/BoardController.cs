@@ -17,7 +17,7 @@ namespace Note.MVC.Controllers
     {
         private readonly IHostingEnvironment _environment;
         private readonly BoardBll _boardBll;
-        
+        private const int _pageSize = 5;
 
         public BoardController(BoardBll boardBll, IHostingEnvironment environment)
         {
@@ -30,12 +30,12 @@ namespace Note.MVC.Controllers
             if (string.IsNullOrEmpty(searchName))
             {
                 var item = _boardBll.GetBoardTracking();
-                var model = await PagingList<Board>.CreateAsync(item, 5, page);
+                var model = await PagingList<Board>.CreateAsync(item, _pageSize, page);
                 return View(model);
             } else
             {
                 var item = _boardBll.GetBoardTracking(searchName);
-                var model = await PagingList<Board>.CreateAsync(item, 5, page);
+                var model = await PagingList<Board>.CreateAsync(item, _pageSize, page);
                 return View(model);
             }
 
@@ -100,36 +100,23 @@ namespace Note.MVC.Controllers
             return Redirect("Index");
         }
 
-        // http://www.example.com/upload/ImageUpload/
-        // http://www.example.com/api/upload
         [HttpPost, Route("board/upload")]
         public async Task<IActionResult> ImageUploadAsync(IFormFile file)
         {
-            //# 이미지나 파일을 업로드 할 때 필요한 구성 
-
-            //1. Path(경로) - 어디에다 저장할지
-            var path = Path.Combine(_environment.WebRootPath, @"images\boardImage"); // @쓰면 이스케이프시퀸스인식안하고 string으로 인식
-            //2. Name(이름) - DateTime저장된 시간별로(사람이 많이 없으면 괜찮으나 그게 아니라면..), GUID
+            var path = Path.Combine(_environment.WebRootPath, @"images\boardImage"); 
             var fileFullName = file.FileName.Split('.');
             var fileName = $"{Guid.NewGuid()}.{fileFullName[1]}";
-            //3. 확장자(Extension) - jpg, png, txt 등등..
 
             using (var fileStream = new FileStream(Path.Combine(path, fileName), FileMode.Create))
             {
                 await file.CopyToAsync(fileStream); //async를 쓰면 await는 짝임 비동기처리 웹사이트 병목현상 방지
-                //병목현상이 나타나게되면 다른 사용자도 웹사이트가 멈추는 현상 발생
             }
             return Ok(new { file = "/images/boardImage/" + fileName, success = true });  //자바스크립트에 전송할 URL
-
-            //#URL 접근방식
-            //ASP.NET - 호스명/ 까지 포함되어있어서 위와같이 라우트 해줌
-            //JavaScript - 호스트명/이 안붙음
-            // 그래서 /붙어줌
         }
         
         private string GetImageName(string str)
         {
-            string[] _str = str.Split("/");
+            string[] _str = str.Split("/"); 
             return _str[3];
         }
 

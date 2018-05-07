@@ -34,7 +34,7 @@ namespace Note.DAL
             }
         }
 
-        public Board GetBoard(int boardNo)
+        public Board GetBoard(int boardNo) //1개의 게시글을 받아온다
         {
             using (var db = new NoteDbContext(_configuration))
             {
@@ -42,7 +42,7 @@ namespace Note.DAL
             }
         }
 
-        public IOrderedQueryable<Board> GetBoardTracking()
+        public IOrderedQueryable<Board> GetBoardTracking() //페이징시 사용
         {
             var db = new NoteDbContext(_configuration);
             var _board = db.Boards.AsNoTracking().OrderByDescending(b => b.No);
