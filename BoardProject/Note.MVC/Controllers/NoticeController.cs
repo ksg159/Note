@@ -28,13 +28,13 @@ namespace Note.MVC.Controllers
             if (string.IsNullOrEmpty(searchName))
             {
                 var item = _noticeBll.GetNoticeTracking();
-                var model = await PagingList<Notice>.CreateAsync(item, 5, page);
+                var model = await PagingList.CreateAsync(item, 5, page);
 
                 return View(model);
             } else
             {
                 var item = _noticeBll.GetNoticeTracking(searchName);
-                var model = await PagingList<Notice>.CreateAsync(item, 5, page);
+                var model = await PagingList.CreateAsync(item, 5, page);
 
                 return View(model);
             }
