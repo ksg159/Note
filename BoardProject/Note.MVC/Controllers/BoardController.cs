@@ -30,12 +30,12 @@ namespace Note.MVC.Controllers
             if (string.IsNullOrEmpty(searchName))
             {
                 var item = _boardBll.GetBoardTracking();
-                var model = await PagingList<Board>.CreateAsync(item, _pageSize, page);
+                var model = await PagingList.CreateAsync(item, _pageSize, page);
                 return View(model);
             } else
             {
                 var item = _boardBll.GetBoardTracking(searchName);
-                var model = await PagingList<Board>.CreateAsync(item, _pageSize, page);
+                var model = await PagingList.CreateAsync(item, _pageSize, page);
                 return View(model);
             }
 
