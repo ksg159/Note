@@ -32,11 +32,15 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
+                    <li><a asp-controller="Js" asp-action="Index"> 자바스크립트 테스트</a></li>
+                    <li><a asp-controller="Js" asp-action="Test">유저별 글 리스트</a></li>
+
                     @if (!User.Identity.IsAuthenticated) //로그인 상태가 아니라면
-                    {
-                        <li><a asp-area="" asp-controller="Account" asp-action="Register">회원가입</a></li>
-                        <li><a asp-area="" asp-controller="Account" asp-action="Login">로그인</a></li>
-                    }
+    {
+                <li><a asp-area="" asp-controller="Account" asp-action="Register">회원가입</a></li>
+                <li><a asp-area="" asp-controller="Account" asp-action="Login">로그인</a></li>
+}
+
                 </ul>
             </div>
         </div>

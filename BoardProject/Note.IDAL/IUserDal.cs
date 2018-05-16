@@ -17,5 +17,6 @@ namespace Note.IDAL
         /// </summary>
         User GetUser(LoginViewModel model);
 
+        List<User> GetNonActiveUser();
     }
 }

@@ -30,12 +30,31 @@ $(".delete").click(function myfunction() {
 
     if (confirm("정말 삭제하시겠습니까?")) {
         confirm_value.value = "Y";
-  
+
     } else {
         alert("취소 되었습니다.");
         confirm_value.value = "N";
-       
-    }
-   return document.forms.appendChild(confirm_value);
-})
 
+    }
+    return document.forms.appendChild(confirm_value);
+});
+
+function hTest() {
+    var text = document.getElementById("test1");
+    text.innerText = "작성한 글이 없는 유저들";
+}
+
+
+$("#btn1").click(function cEvent() {
+    event();
+});
+
+
+function js1() {
+    var a2 = document.getElementById("a1");
+    a2.innerText = "이걸로 바꿔버렸";
+}
+
+function event() {
+    js1();
+}

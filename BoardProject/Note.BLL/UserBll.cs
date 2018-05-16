@@ -25,6 +25,10 @@ namespace Note.BLL
         {
             return _userDal.GetUser(model);
         }
-        
+
+        public List<User> GetNonActiveUser()
+        {
+            return _userDal.GetNonActiveUser();
+        }
     }
 }

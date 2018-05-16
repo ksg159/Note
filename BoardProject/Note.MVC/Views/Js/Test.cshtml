@@ -1,0 +1,27 @@
+﻿
+<button class="btn btn-primary" onclick="hTest()">이벤트</button>
+
+<div class="container">
+    <h2 id="test1"></h2>
+    <table class="table-striped">
+        <thead>
+            <tr>
+                <th>이름</th>
+                <th>아이디</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in Model)
+            {
+                <tr>
+                    <td>
+                        @user.UserId
+                    </td>
+                    <td>
+                        @user.Name
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
