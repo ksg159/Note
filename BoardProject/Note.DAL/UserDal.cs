@@ -18,6 +18,15 @@ namespace Note.DAL
             _configuration = configuration;
         }
 
+        public User GetUser(string id)
+        {
+            using (var db = new NoteDbContext(_configuration))
+            {
+                var data = db.Users.FirstOrDefault(u => u.UserId == id);
+                return data;
+            }
+        }
+
         public User GetUser(LoginViewModel model)
         {
             using (var db = new NoteDbContext(_configuration))

@@ -58,3 +58,22 @@ function js1() {
 function event() {
     js1();
 }
+
+$("#IdValidBtn").click(function () {
+    var id = $("#IdText").val();
+    var RegisterBtn = $("#RegisterBtn")
+    $.ajax({
+        url: "/Account/Idvalid",
+        type: "post",
+        data: { idText: id },
+        success: function (data) {
+            if (data.success) {
+                alert("중복된 아이디가 없습니다.");
+                RegisterBtn.removeAttr("disabled");
+            } else {
+                alert("중복된 아이디가 있습니다.");
+                RegisterBtn.attr("disabled", "disabled");
+            }
+        }
+    });
+});
