@@ -35,7 +35,7 @@
                         <td>
                             <a asp-controller="Notice" asp-action="Edit" asp-route-noticeNo="@notice.No">Edit</a>
                             <label>|</label>
-                            <a onclick="return confirm(" 삭제하시겠습니까?")" asp-controller="Notice" asp-action="Delete" asp-route-noticeNo="@notice.No">Delete</a>
+                            <a asp-controller="Notice" asp-action="Delete" asp-route-noticeNo="@notice.No" >Delete</a>
 
                         </td>
                     }
