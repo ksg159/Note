@@ -50,10 +50,10 @@ namespace Note.MVC.Controllers
         public async Task<IActionResult> Login(LoginViewModel model)
         {
             if (ModelState.IsValid)
-            { 
+            {
                 var user = _userBll.GetUser(model);
                 await CreateCookieAsync(user);
-                
+
                 if (user != null)
                 {
                     return RedirectToAction("Index", "Home");
@@ -79,6 +79,17 @@ namespace Note.MVC.Controllers
             var claimsIndentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIndentity));
         }
-        
+
+        [HttpPost, Route("Account/Idvalid")]
+        public IActionResult IdValidation(string idText)
+        {
+            if (_userBll.GetUser(idText))
+            {
+                return Ok(new { success = true }); 
+            } else
+            {
+                return Ok(new { success = false });
+            }
+        }
     }
 }

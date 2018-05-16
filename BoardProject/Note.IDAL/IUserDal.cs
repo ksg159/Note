@@ -18,5 +18,12 @@ namespace Note.IDAL
         User GetUser(LoginViewModel model);
 
         List<User> GetNonActiveUser();
+
+        /// <summary>
+        /// 회원가입 시 아이디 유효성 체크
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        User GetUser(string id);
     }
 }

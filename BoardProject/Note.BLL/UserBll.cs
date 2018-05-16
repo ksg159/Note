@@ -5,9 +5,9 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Note.BLL 
+namespace Note.BLL
 {
-    public class UserBll 
+    public class UserBll
     {
         private readonly IUserDal _userDal;
 
@@ -29,6 +29,19 @@ namespace Note.BLL
         public List<User> GetNonActiveUser()
         {
             return _userDal.GetNonActiveUser();
+        }
+
+        public bool GetUser(string id)
+        {
+            var user = _userDal.GetUser(id);
+            if (user == null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }
